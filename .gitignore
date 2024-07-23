@@ -1,0 +1,5 @@
+.env
+venv/
+reddit-subset/
+output/
+openai_embedded_small.pkl
