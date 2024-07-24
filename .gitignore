@@ -1,0 +1,35 @@
+# Ignore all the output directories
+output/
+
+# Ignore the reddit subset directory
+reddit-subset/
+
+# Ignore the Python virtual environment directory
+myenv/
+env/
+venv/
+.venv/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore hidden system files
+.DS_Store
+Thumbs.db
+
+# Ignore the VSCode settings directory
+.vscode/
+.env
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.swo
