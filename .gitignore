@@ -29,7 +29,6 @@ Thumbs.db
 # Ignore log files
 *.log
 
-# Ignore temporary files
-*.tmp
-*.swp
-*.swo
+output/
+openai_embedded_small.pkl
+text_embeddings/
