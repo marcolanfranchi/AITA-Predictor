@@ -3,6 +3,7 @@ output/
 
 # Ignore the reddit subset directory
 reddit-subset/
+reddit-subset-2022/
 
 # Ignore the Python virtual environment directory
 myenv/
