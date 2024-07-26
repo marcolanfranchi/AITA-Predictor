@@ -6,13 +6,14 @@ from dotenv import load_dotenv
 import os
 import pandas as pd 
 import torch
-from openai.embeddings_utils import get_embedding, cosine_similarity
+from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
 
 # Load OpenAI API key
 openai_key = os.getenv('OPENAI_KEY')
 client = OpenAI(api_key=openai_key)
+submissions = pd.read_pickle('output/openai_embedded_large_all.pkl')
 
 # Load trained model (logarithmic regression)
 with open('logregress_model.pkl', 'rb') as file:
@@ -35,6 +36,19 @@ def predict(embedding):
     prediction = model.predict(embedding)[0]
     return 'Asshole' if prediction == 0 else 'Not the Asshole'
 
+def search_reviews(df, embedding, n=1):
+    """
+    find the top n most similar embeddings in the DataFrame.
+    """
+    # Ensure the input embedding is a 2D array (things break otherwise)
+    embedding = embedding.reshape(1, -1)
+
+    # Calculate cosine similarity for each embedding in the DataFrame (turning everything into 2D arrays)
+    df['similarities'] = df['embedding'].apply(lambda x: cosine_similarity(np.array(x).reshape(1, -1), embedding).flatten()[0])
+    
+    # Sort the DataFrame by similarity and return the top n results
+    res = df.sort_values('similarities', ascending=False).head(n)
+    return res
 # initialize the streamlit app
 st.set_page_config(page_title='Am I the Asshole?', page_icon='🤔', layout='centered', initial_sidebar_state='auto')
 st.title('Am I the Asshole?')
@@ -49,6 +63,14 @@ if st.button('Ask'):
             st.write("Story: ", story)
             # st.dataframe(pd.DataFrame(embedding))
             st.write(f'You are: {result}')
+            res = search_reviews(submissions, embedding, n=1).iloc[0]
+            story = res['selftext']
+            classfication = res['link_flair_text']
+            st.write(f'This story is most similar to yours')
+            st.write(f'This story was classified as {classfication}')
+            st.write(f'{story}')
+
+
         else:
             st.write("Please limit your story to 250 characters.")
     else:
