@@ -67,7 +67,7 @@ if st.button('Ask'):
             story = res['selftext']
             classfication = res['link_flair_text']
             st.write(f'This story is most similar to yours')
-            st.write(f'This story was classified as {classfication}')
+            st.write(f'This story was classified as {classfication} by redditors')
             st.write(f'{story}')
 
 
