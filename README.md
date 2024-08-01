@@ -1,3 +1,5 @@
+# README
+
 
 # AITA Predictor
 This project is a part of SFU's [CMPT 353 Summer 2024](https://www.sfu.ca/outlines.html?2024/summer/cmpt/353/d100), Computational Data Science. 
@@ -15,25 +17,37 @@ In this project, we aimed to develop a machine learning model capable of categor
 * Predictive Modeling
 
 ### Technologies
-* Hadoop
 * Python
+* scikit-learn
+* Hadoop
 * Torch
 * Spark
 * Pandas
-* scikit-learn
+* pickle
 * Jupyter
 * Streamlit
 
 ## Before Starting
-- The initial dataset of r/AmItheAsshole posts was collected directly from the Hadoop cluster provided as part of the course material in CMPT 353. We began our exploration by using data from 2023, but later expanded and included posts from 2022. Since, this process ([`1. unload_data.py`](1.unload_data.py)) has a long run-time, we saved the data to a directory of [zipped json files]()
-- For the feature generation part of the project, [`2.Convert_OpenAI_Embedding`](2.Convert_OpenAI_Embedding), we used 
+- Our dataset of r/AmItheAsshole posts was collected directly from the Hadoop cluster provided as part of the course material in CMPT 353. We began our exploration by using data from 2023, but later expanded and included posts from 2022. This process is in ([`0. get_reddit_data.py`](0.get_reddit_data.py)). Since this process has a long run-time and did not need to be ran again, we saved the data to a directory of [zipped json files](). 
+    - If you wish to run the next couple of steps, the second of which will require an OpenAI api key for feature generation, you can download this data [here]() and place it in the ([**FILL THIS IN**]()) directory. Otherwise, you do not need this data.
+- After 
+- For the feature generation part of the project, [`2.Convert_OpenAI_Embedding.ipynb`](2.Convert_OpenAI_Embedding), we generated vector embeddings for the text of each post using OpenAI's [`text-embedding-3-large`](https://platform.openai.com/docs/guides/embeddings) embedding model. This file also has a long run-time, and requires an OpenAI Api key.
+    - If you wish to run `2.Convert_OpenAI_Embedding.ipynb`, download the data mentioned above and create a `.env` file in the root directory and add your OpenAI Api key to the file:
+    ```OPENAI_KEY='your_openai_api_key'```
+    - Otherwise, the dataset including the vector embedding for each row created from this file is located at [xxx](), so you can proceed without executing this file.
 
 ## Getting Started
 
-1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
-2. Raw Data is being kept [here](Repo folder containing raw data) within this repo.
+1. Clone this repo and open a terminal in the root directory.
 
-    *If using offline data mention that and how they may obtain the data from the froup)*
+    ```
+    git clone https://github.com/Localbrownboy/AITA_Predictor.git
+
+    cd AITA_predictor
+    ```
+
+2. If you wish to run [`1. unload_data.py`](1.unload_data.py):
+    - SSH 
     
 3. Data processing/transformation scripts are being kept [here](Repo folder containing data processing scripts/notebooks)
 4. etc...
