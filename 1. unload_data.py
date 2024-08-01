@@ -52,8 +52,7 @@ submissions_schema = types.StructType([
 def main():
     def load_all_json_gz_to_dataframe_spark(directory):
         # Read all JSON.gz files into a Spark DataFrame
-        df = spark.read.json(f"{directory}/*.json.gz")
-
+        df = spark.read.json(f"{directory}")
         # Filter the DataFrame
         filtered_df = df.filter(
             (col('selftext') != '[removed]') &
@@ -64,10 +63,10 @@ def main():
 
         return filtered_df
 
-    directory_path = 'reddit-subset-2022/submissions'
+    directory_path = 'reddit-subset/submissions' # change this to the reddit subset you desire, need to be done once for 2022 and 2023 
     df = load_all_json_gz_to_dataframe_spark(directory_path)
-
-    df.show()
-
+    # df.write.json('output/filtered_not_balanced_2022')
+    pd_df = df.toPandas() # this is okay as the data set is only 80k rows 
+    pd_df.to_json('output/filtered_not_balanced_2023' , compression='gzip') # make output file name correspond with the input subset 
 if __name__ == '__main__':
     main()
