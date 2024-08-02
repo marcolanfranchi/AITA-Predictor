@@ -16,10 +16,10 @@ load_dotenv()
 # Load OpenAI API key
 openai_key = os.getenv('OPENAI_KEY')
 client = OpenAI(api_key=openai_key)
-submissions = pd.read_pickle('output/openai_embedded_large_all.pkl')
+submissions = pd.read_pickle('output/openai_embedded_large.pkl')
 
 # Load trained model (logistic regression)
-with open('logregress_model.pkl', 'rb') as file:
+with open('ensemble.pkl', 'rb') as file: 
     model = pickle.load(file)
 
 # Load t-SNE data
