@@ -117,7 +117,7 @@ if st.button('ask'):
                 st.markdown(story)
                 st.markdown(f'### model result:')
                 if result == 'Asshole':
-                    st.markdown(f'the model says you are: :red[**{result}**]')
+                    st.markdown(f'the model says you are: the :red[**{result}**]')
                 else:
                     st.markdown(f'the model says you are: :blue[**{result}**]')
                 emoji_animation(result)
