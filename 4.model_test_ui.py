@@ -113,27 +113,34 @@ if st.button('ask'):
             embedding = get_embedding(story)
             result = predict(embedding)
             with st.container():
-                st.markdown(f'- **story:** {story}')
-                st.markdown(f'- **the model says you are:** {result}')
+                st.markdown(f'### your story:')
+                st.markdown(story)
+                st.markdown(f'### model result:')
+                if result == 'Asshole':
+                    st.markdown(f'the model says you are: :red[**{result}**]')
+                else:
+                    st.markdown(f'the model says you are: :blue[**{result}**]')
                 emoji_animation(result)
                 res = get_similar_posts(submissions, embedding, n=3)
-                st.markdown("these stories are most similar to yours:")
+                st.markdown("### these stories are most similar to yours:")
                 story_num = 1
                 for index, row in res.iterrows():
                     with st.container():
-                        st.write('---')
                         st.markdown(f'**{story_num})**')
                         story_title = row['title']
                         story = row['selftext']
                         reddit_classification = row['link_flair_text']
                         st.markdown(f'*{story_title}*')
-                        st.markdown(f'(this story was classified as **{reddit_classification}** by redditors)')
+                        if reddit_classification == 'Asshole':
+                            st.markdown(f'- this story was classified as :red[**{reddit_classification}**] by redditors')
+                        else:
+                            st.markdown(f'- this story was classified as :blue[**{reddit_classification}**] by redditors')
                         stx.scrollableTextbox(story, height=250, fontFamily='system-ui')
                         story_num += 1
+                        st.write('---')
 
                 # plotting t-SNE chart with annotations for similar stories
-                st.write("---")
-                st.write("This is where the most similar stories are located in the t-SNE plot:")
+                st.markdown(f'### This is where the most similar stories are located in the t-SNE plot:')
                 plot_tsne_with_annotations(res)
 
         else:
