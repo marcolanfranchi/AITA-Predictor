@@ -33,3 +33,6 @@ Thumbs.db
 output/
 openai_embedded_small.pkl
 text_embeddings/
+usr/
+home/
+temp.ipynb
