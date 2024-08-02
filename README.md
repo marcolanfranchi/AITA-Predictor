@@ -105,12 +105,12 @@ This section provides detailed instructions on how to execute each file. As ment
     If you want to run it, open the Jupyter notebook and run all cells. Ensure you have your OpenAI API key set up in a `.env` file. This program will output the entire dataset with vector embeddings to a .pkl file, [`output/openai_embedded_large.pkl`](output/openai_embedded_large.pkl).
 
     ```bash
-    streamlit run 2-convert-openai-embedding.py
+    python 2-convert-openai-embedding.py
     ```
 
     - **Alternatively**, you can run **`2-convert-embedding.py`** to obtain the text embedding vectors without using the OpenAI API. This file contains the method we initially wrote to chunk text blocks by sentence, calculate a vector embedding for each sentence, and use some form of aggregation on the sentence vectors to obtain one vector per data point. Creating the embeddings this way will decrease the model's accuracy score. This program will output the entire dataset with vector embeddings to a .pkl file, [`output/paraphrase_mini_l6_embedded_averaged.pkl`](output/paraphrase_mini_l6_embedded_averaged.pkl). 
         ```bash
-        streamlit run 2-convert-embedding.py
+        python 2-convert-embedding.py
         ```
 3. **Executing `3-predict.ipynb`:**
    
@@ -128,8 +128,8 @@ This section provides detailed instructions on how to execute each file. As ment
 
 
 
-## Project Paper
-- [Notebook/Markdown/Slide Deck Title](link)
+## Project Report
+- [Google Doc Link](https://docs.google.com/document/d/1d3yfFgDIElncjXK0weOXknsgSJyq39UOKmsKnBXQgik/edit?usp=sharing)
 
 
 ## Group Members
