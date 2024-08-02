@@ -26,7 +26,7 @@ with open('ensemble.pkl', 'rb') as file:
 df_tsne = pd.read_pickle('output/tsne.pkl')
 
 
-@st.cache_data
+# @st.cache_data
 def get_embedding(text, model="text-embedding-3-large"):
     text = text.replace("\n", " ")
     embedding = torch.tensor(client.embeddings.create(input=[text], model=model).data[0].embedding)
@@ -34,19 +34,19 @@ def get_embedding(text, model="text-embedding-3-large"):
     return embedding
 
 
-@st.cache_data
+# @st.cache_data
 def predict(embedding):
     prediction = model.predict(embedding.reshape(1, -1))[0]
     return 'Asshole' if prediction == 0 else 'Not the Asshole'
 
 
-@st.cache_data
+# @st.cache_data
 def get_similar_posts(df, embedding, n=3):
     df['similarities'] = df['embedding'].apply(lambda x: cosine_similarity(np.array(x).reshape(1, -1), embedding).flatten()[0])
     res = df.sort_values('similarities', ascending=False).head(n)
     return res
 
-@st.cache_data
+# @st.cache_data
 def plot_tsne_with_annotations(similar_posts):
     colors = {'Asshole': 'red', 'Not the A-hole': 'blue'}
     color_scale = alt.Scale(domain=list(colors.keys()), range=list(colors.values()))
@@ -90,7 +90,7 @@ def plot_tsne_with_annotations(similar_posts):
 
 
 st.set_page_config(page_title='Am I the Asshole?', page_icon='🤔', layout='centered', initial_sidebar_state='auto')
-st.title('Am I ?')
+st.title('Am I the Asshole?')
 
 def emoji_animation(model_result):
     if model_result == 'Asshole':
