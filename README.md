@@ -87,7 +87,7 @@ This section provides detailed instructions on how to execute each file. As ment
     This script processes the raw Reddit data, filters by removing posts that were deleted, had $< 10$ comments, or did not have a "NTA" or "YTA" flair, and outputs the resulting DataFrame to single zipped json file, [output/filtered_not_balanced.json.gz]().
    
     ```bash
-    python 1-unload-data.py
+    spark-submit 1-unload-data.py
     ```
 
     1.5 Executing `1.5-balance-data.py`:**
