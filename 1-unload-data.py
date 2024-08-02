@@ -63,7 +63,7 @@ def main():
 
         return filtered_df
 
-    directory_path = 'output/reddit-subset/submissions' # change this to the reddit subset you desire, need to be done once for 2022 and 2023 
+    directory_path = 'output/reddit-subset/submissions' # change this to the reddit subset you desire 
     df = load_all_json_gz_to_dataframe_spark(directory_path)
     # df.write.json('output/filtered_not_balanced_2022')
     pd_df = df.toPandas() # this is okay as the data set is only 100k rows 
