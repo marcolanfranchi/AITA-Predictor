@@ -25,9 +25,9 @@ In this project, we aimed to develop a machine learning model capable of categor
 * Streamlit
 
 ## Before Starting
-- Our dataset of r/AmItheAsshole posts was collected directly from the Hadoop cluster provided as part of the course material in CMPT 353. We began our exploration by using data from 2023, but later expanded and included posts from 2022. This process is in ([`0. get_reddit_data.py`](0.get_reddit_data.py)). Since this process has a long run-time and did not need to be ran again, we saved the data to a directory of [zipped json files](). 
-    - If you wish to run the next couple of steps, the second of which will require an OpenAI api key for feature generation, you can download this data [here]() and place it in the ([**FILL THIS IN**]()) directory. Otherwise, you do not need this data.
-- After 
+- Our dataset of r/AmItheAsshole posts was collected directly from the Hadoop cluster provided as part of the course material in CMPT 353. We began our exploration by using data from 2023, but later expanded and included posts from 2022. This process is in ([`0. get_reddit_data.py`](0.get_reddit_data.py)). Since this process has a long run-time and did not need to be ran again, we saved the data to a directory of [zipped json files]().
+    - If you wish to run the first few steps (1->2), the second of which will require an OpenAI api key for feature generation, you can download this data [here]() and place it in the ([**FILL THIS IN**]()) directory. Otherwise, you do not need this data.
+- After obtaining the data from the Hadoop cluster, we
 - For the feature generation part of the project, [`2.Convert_OpenAI_Embedding.ipynb`](2.Convert_OpenAI_Embedding), we generated vector embeddings for the text of each post using OpenAI's [`text-embedding-3-large`](https://platform.openai.com/docs/guides/embeddings) embedding model. This file also has a long run-time, and requires an OpenAI Api key.
     - If you wish to run `2.Convert_OpenAI_Embedding.ipynb`, download the data mentioned above and create a `.env` file in the root directory and add your OpenAI Api key to the file:
     ```OPENAI_KEY='your_openai_api_key'```
@@ -74,6 +74,7 @@ In this project, we aimed to develop a machine learning model capable of categor
 * If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
 * Our slack channel is `#datasci-projectname`
 * Feel free to contact team leads with any questions or if you are interested in contributing!
+
 
 
 
