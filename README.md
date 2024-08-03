@@ -2,7 +2,7 @@
 This project is a part of SFU's [CMPT 353 Summer 2024](https://www.sfu.ca/outlines.html?2024/summer/cmpt/353/d100), Computational Data Science. 
 
 ## Project Objective
-In this project, we aimed to develop a machine learning model capable of categorizing posts from [r/AmiTheAsshole](https://www.reddit.com/r/AmItheAsshole/), where user's submit a story and are told by the community whether or not they are the 'A-hole'. We collected data from 2022-2023 and narrowed it down to the two post flair categories that were most common: those being “YTA”(You’re The Asshole) or “NTA” (Not The Asshole). Our goal is to reliably predict the consensus of the community based on the content of each submission by categorizing it into one of those 2 categories. 
+In this project, we aimed to develop a machine learning model capable of categorizing posts from [r/AmItheAsshole](https://www.reddit.com/r/AmItheAsshole/), where user's submit a story and are told by the community whether or not they are the 'A-hole'. We collected data from 2022-2023 and narrowed it down to the two post flair categories that were most common: those being “YTA”(You’re The Asshole) or “NTA” (Not The Asshole). Our goal is to reliably predict the consensus of the community based on the content of each submission by categorizing it into one of those 2 categories. 
 
 ### Methods Used
 - Text Embeddings
