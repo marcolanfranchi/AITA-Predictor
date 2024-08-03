@@ -5,7 +5,6 @@ This project is a part of SFU's [CMPT 353 Summer 2024](https://www.sfu.ca/outlin
 In this project, we aimed to develop a machine learning model capable of categorizing posts from [r/AmiTheAsshole](https://www.reddit.com/r/AmItheAsshole/), where user's submit a story and are told by the community whether or not they are the 'A-hole'. We collected data from 2022-2023 and narrowed it down to the two post flair categories that were most common: those being “YTA”(You’re The Asshole) or “NTA” (Not The Asshole). Our goal is to reliably predict the consensus of the community based on the content of each submission by categorizing it into one of those 2 categories. 
 
 ### Methods Used
-- Inferential Statistics
 - Text Embeddings
 - Machine Learning
 - Data Visualization
@@ -13,7 +12,7 @@ In this project, we aimed to develop a machine learning model capable of categor
 
 ### Technologies
 - **Languages:** Python (3.11)
-- **Libraries/Frameworks:** scikit-learn, torch, PySpark, pandas, pickle, Streamlit
+- **Libraries/Frameworks:** scikit-learn, torch, PySpark, pandas, pickle, Streamlit, OpenAI
 - **Tools:** Apache Hadoop, Jupyter Notebook, GitHub
 
 ## Getting Started
@@ -108,7 +107,7 @@ This section provides detailed instructions on how to execute each file. As ment
     Open the Jupyter Notebook and run all cells. This notebook handles all of our model definition, training, and validation.
 
 4. **Executing `4-model-ui.py`:**
-    The Streamlit app you run in this step is hosted [here](https://aitapredictor.streamlit.app/), so you can skip this step by visiting the site.
+    The Streamlit app you run in this step is hosted [here](https://aitapredictor.streamlit.app/), so you can skip this step by visiting the site. If there are any issues when accessing the site, you can contact us and we will provide an OpenAI API key so that you can run the app locally.
     This step also requires an OpenAI API key in a `.env` file and can incur small costs. The script runs a Streamlit app that provides a user interface for making predictions with the model. To run the app locally, use the following command:
 
     ```bash
@@ -116,7 +115,6 @@ This section provides detailed instructions on how to execute each file. As ment
     ```
 
     Once the app is running, you can navigate to [`http://localhost:8501`](http://localhost:8501/) in your web browser to interact with the application.
-
 
 
 ## Project Report
