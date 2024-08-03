@@ -18,7 +18,7 @@ openai_key = os.getenv('OPENAI_KEY')
 client = OpenAI(api_key=openai_key)
 submissions = pd.read_pickle('output/openai_embedded_large.pkl')
 
-# Load trained model (logistic regression)
+# Load trained model (ensemble)
 with open('ensemble.pkl', 'rb') as file: 
     model = pickle.load(file)
 
@@ -28,6 +28,9 @@ df_tsne = pd.read_pickle('output/tsne.pkl')
 
 # @st.cache_data
 def get_embedding(text, model="text-embedding-3-large"):
+    """
+    Get embedding for the user's story.
+    """
     text = text.replace("\n", " ")
     embedding = torch.tensor(client.embeddings.create(input=[text], model=model).data[0].embedding)
     embedding = np.array(embedding).reshape(1, -1)
@@ -36,18 +39,27 @@ def get_embedding(text, model="text-embedding-3-large"):
 
 # @st.cache_data
 def predict(embedding):
+    """
+    Use the user's story embedding to predict if they are the asshole or not
+    """
     prediction = model.predict(embedding.reshape(1, -1))[0]
     return 'Asshole' if prediction == 0 else 'Not the Asshole'
 
 
 # @st.cache_data
 def get_similar_posts(df, embedding, n=3):
+    """
+    Get similar stories from our data. This code is adapted from https://cookbook.openai.com/examples/code_search_using_embeddings
+    """
     df['similarities'] = df['embedding'].apply(lambda x: cosine_similarity(np.array(x).reshape(1, -1), embedding).flatten()[0])
     res = df.sort_values('similarities', ascending=False).head(n)
     return res
 
 # @st.cache_data
 def plot_tsne_with_annotations(similar_posts):
+    """
+    Plot t-SNE with annotations for the found similar stories
+    """
     colors = {'Asshole': 'red', 'Not the A-hole': 'blue'}
     color_scale = alt.Scale(domain=list(colors.keys()), range=list(colors.values()))
 
@@ -93,6 +105,9 @@ st.set_page_config(page_title='Am I the Asshole?', page_icon='🤔', layout='cen
 st.title('Am I the Asshole?')
 
 def emoji_animation(model_result):
+    """
+    Emoji rain animation based on model result
+    """
     if model_result == 'Asshole':
         emoji = "😡"
     elif model_result == 'Not the Asshole':

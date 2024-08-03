@@ -17,10 +17,13 @@ def main():
     openai_key = os.getenv('OPENAI_KEY')
     client = OpenAI(api_key=openai_key)
 
+    # Read the filtered and balanced data
     submissions = pd.read_json('output/filtered_and_balanced.json.gz' , compression='gzip')
 
+    # Calculate and add the OpenAI embeddings to the DataFrame
     submissions['embedding'] =  submissions['selftext'].apply(lambda x: get_embedding(x, model='text-embedding-3-large'))
 
+    # Save the DataFrame to a pickle file
     submissions.to_pickle('output/openai_embedded_large.pkl')
 
 
