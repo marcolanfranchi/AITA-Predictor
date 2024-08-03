@@ -120,11 +120,11 @@ def emoji_animation(model_result):
     )
 
 
-story = st.text_area("Enter your story (max 500 characters):", "")
+story = st.text_area("Enter your story (max 5000 characters):", "")
 
 if st.button('ask'):
     if story:
-        if len(story) <= 500:
+        if len(story) <= 5000:
             embedding = get_embedding(story)
             result = predict(embedding)
             with st.container():
@@ -159,7 +159,7 @@ if st.button('ask'):
                 plot_tsne_with_annotations(res)
 
         else:
-            st.write("Please limit your story to 500 characters.")
+            st.write("Please limit your story to 5000 characters.")
     else:
         st.write("Please enter a story to get a prediction.")
 
